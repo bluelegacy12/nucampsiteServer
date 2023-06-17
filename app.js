@@ -7,9 +7,11 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const passport = require('passport');
 const authenticate = require('./authenticate');
+const config = require('./config');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const url = config.mongoUrl;
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 const campsiteRouter = require('./routes/campsiteRouter');
 const promotionRouter = require('./routes/promotionRouter');
 const partnerRouter = require('./routes/partnerRouter');
@@ -18,7 +20,6 @@ var app = express();
 
 const mongoose = require('mongoose');
 
-const url = 'mongodb://localhost:27017/nucampsite';
 const connect = mongoose.connect(url, {
     useCreateIndex: true,
     useFindAndModify: false,
